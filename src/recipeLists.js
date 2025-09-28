@@ -29,7 +29,7 @@ const RecipeList = ({recipes}) => {
     await searchHistory(newRecipe);  
     navigate(`/recipeDetails/${newRecipe.id}`,{
       state: {  // ✅ Add 'state:' property
-          recipes: recipes // ✅ Use the fetched data directly
+          recipe: newRecipe // ✅ Use the fetched data directly
         }
     }); // then navigate manually
   }
