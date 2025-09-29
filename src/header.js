@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useRecipes from "./useRecipes";
+import useRecipes from "./recipes/useRecipes"
 
 const Header = () => {
   const [query, setQuery] = useState("");   // input text

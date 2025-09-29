@@ -1,11 +1,10 @@
 import Header from "./header";
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from "./home";
-import RecipeResults from "./recipeResults"
-import RecipeDetails from "./recipeDetails";
+import RecipeResults from "./recipes/recipeResults"
+import RecipeDetails from "./recipeDetails/recipeDetails";
 import Cuisines from "./cuisines";
 function App() {
-  
   return (
     <Router>
       <header>

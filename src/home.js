@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import RecipeList from "./recipeLists";
-import useRecipes from "./useRecipes";
+import RecipeList from "./recipes/recipeLists";
+import useRecipes from "./recipes/useRecipes"
 
 const Home = () => {
   const {recipes,getRecipes} = useRecipes()
@@ -9,6 +9,8 @@ const Home = () => {
     getRecipes();
   },[])
 
+  // I wanna do a swipe effect in going through the routes and not only this but also to have in the 
+  // navbar big titles: "Home,favourties,cuisines" and will be highlighted somehow on focus or if a page is selected
   
   return ( 
     <div className="homePage">

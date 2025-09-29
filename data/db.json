@@ -177,6 +177,49 @@
         ]
       },
       "date": "9/28/2025"
+    },
+    {
+      "id": "ae6d",
+      "recipe": {
+        "id": 29,
+        "name": "Lebanese Falafel Wrap",
+        "ingredients": [
+          "Falafel balls",
+          "Whole wheat or regular wraps",
+          "Tomatoes, diced",
+          "Cucumbers, sliced",
+          "Red onions, thinly sliced",
+          "Lettuce, shredded",
+          "Tahini sauce",
+          "Fresh parsley, chopped"
+        ],
+        "instructions": [
+          "Warm falafel balls according to package instructions.",
+          "Place a generous serving of falafel in the center of each wrap.",
+          "Top with diced tomatoes, sliced cucumbers, red onions, shredded lettuce, and fresh parsley.",
+          "Drizzle with tahini sauce and wrap tightly.",
+          "Enjoy this Lebanese Falafel Wrap filled with fresh and flavorful ingredients!"
+        ],
+        "prepTimeMinutes": 15,
+        "cookTimeMinutes": 10,
+        "servings": 2,
+        "difficulty": "Easy",
+        "cuisine": "Lebanese",
+        "caloriesPerServing": 400,
+        "tags": [
+          "Falafel",
+          "Lebanese",
+          "Wrap"
+        ],
+        "userId": 110,
+        "image": "https://cdn.dummyjson.com/recipe-images/29.webp",
+        "rating": 4.7,
+        "reviewCount": 84,
+        "mealType": [
+          "Lunch"
+        ]
+      },
+      "date": "9/29/2025"
     }
   ]
 }
