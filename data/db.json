@@ -1,7 +1,49 @@
 {
   "searchedBefore": [
     {
-      "id": "562e",
+      "id": "ece4",
+      "recipe": {
+        "id": 1,
+        "name": "Classic Margherita Pizza",
+        "ingredients": [
+          "Pizza dough",
+          "Tomato sauce",
+          "Fresh mozzarella cheese",
+          "Fresh basil leaves",
+          "Olive oil",
+          "Salt and pepper to taste"
+        ],
+        "instructions": [
+          "Preheat the oven to 475°F (245°C).",
+          "Roll out the pizza dough and spread tomato sauce evenly.",
+          "Top with slices of fresh mozzarella and fresh basil leaves.",
+          "Drizzle with olive oil and season with salt and pepper.",
+          "Bake in the preheated oven for 12-15 minutes or until the crust is golden brown.",
+          "Slice and serve hot."
+        ],
+        "prepTimeMinutes": 20,
+        "cookTimeMinutes": 15,
+        "servings": 4,
+        "difficulty": "Easy",
+        "cuisine": "Italian",
+        "caloriesPerServing": 300,
+        "tags": [
+          "Pizza",
+          "Italian"
+        ],
+        "userId": 166,
+        "image": "https://cdn.dummyjson.com/recipe-images/1.webp",
+        "rating": 4.6,
+        "reviewCount": 98,
+        "mealType": [
+          "Dinner"
+        ],
+        "favourite": true
+      },
+      "date": "9/30/2025"
+    },
+    {
+      "id": "4dc3",
       "recipe": {
         "id": 2,
         "name": "Vegetarian Stir-Fry",
@@ -41,185 +83,54 @@
         "reviewCount": 26,
         "mealType": [
           "Lunch"
-        ]
+        ],
+        "favourite": false
       },
-      "date": "9/27/2025"
+      "date": "10/1/2025"
     },
     {
-      "id": "9959",
+      "id": "3ee5",
       "recipe": {
-        "id": 3,
-        "name": "Chocolate Chip Cookies",
+        "id": 7,
+        "name": "Tomato Basil Bruschetta",
         "ingredients": [
-          "All-purpose flour",
-          "Butter, softened",
-          "Brown sugar",
-          "White sugar",
-          "Eggs",
-          "Vanilla extract",
-          "Baking soda",
-          "Salt",
-          "Chocolate chips"
+          "Baguette, sliced",
+          "Tomatoes, diced",
+          "Fresh basil, chopped",
+          "Garlic cloves, minced",
+          "Balsamic glaze",
+          "Olive oil",
+          "Salt and pepper to taste"
         ],
         "instructions": [
-          "Preheat the oven to 350°F (175°C).",
-          "In a bowl, cream together softened butter, brown sugar, and white sugar.",
-          "Beat in eggs one at a time, then stir in vanilla extract.",
-          "Combine flour, baking soda, and salt. Gradually add to the wet ingredients.",
-          "Fold in chocolate chips.",
-          "Drop rounded tablespoons of dough onto ungreased baking sheets.",
-          "Bake for 10-12 minutes or until edges are golden brown.",
-          "Allow cookies to cool on the baking sheet for a few minutes before transferring to a wire rack."
+          "Preheat the oven to 375°F (190°C).",
+          "Place baguette slices on a baking sheet and toast in the oven until golden brown.",
+          "In a bowl, combine diced tomatoes, chopped fresh basil, minced garlic, and a drizzle of olive oil.",
+          "Season with salt and pepper to taste.",
+          "Top each toasted baguette slice with the tomato-basil mixture.",
+          "Drizzle with balsamic glaze before serving."
         ],
         "prepTimeMinutes": 15,
         "cookTimeMinutes": 10,
-        "servings": 24,
-        "difficulty": "Easy",
-        "cuisine": "American",
-        "caloriesPerServing": 150,
-        "tags": [
-          "Cookies",
-          "Dessert",
-          "Baking"
-        ],
-        "userId": 34,
-        "image": "https://cdn.dummyjson.com/recipe-images/3.webp",
-        "rating": 4.9,
-        "reviewCount": 13,
-        "mealType": [
-          "Snack",
-          "Dessert"
-        ]
-      },
-      "date": "9/27/2025"
-    },
-    {
-      "id": "89f6",
-      "recipe": {
-        "id": 6,
-        "name": "Quinoa Salad with Avocado",
-        "ingredients": [
-          "Quinoa, cooked",
-          "Avocado, diced",
-          "Cherry tomatoes, halved",
-          "Cucumber, diced",
-          "Red bell pepper, diced",
-          "Feta cheese, crumbled",
-          "Lemon vinaigrette dressing",
-          "Salt and pepper to taste"
-        ],
-        "instructions": [
-          "In a large bowl, combine cooked quinoa, diced avocado, halved cherry tomatoes, diced cucumber, diced red bell pepper, and crumbled feta cheese.",
-          "Drizzle with lemon vinaigrette dressing and toss to combine.",
-          "Season with salt and pepper to taste.",
-          "Chill in the refrigerator before serving."
-        ],
-        "prepTimeMinutes": 20,
-        "cookTimeMinutes": 15,
-        "servings": 4,
-        "difficulty": "Easy",
-        "cuisine": "Mediterranean",
-        "caloriesPerServing": 280,
-        "tags": [
-          "Salad",
-          "Quinoa"
-        ],
-        "userId": 197,
-        "image": "https://cdn.dummyjson.com/recipe-images/6.webp",
-        "rating": 4.4,
-        "reviewCount": 59,
-        "mealType": [
-          "Lunch",
-          "Side Dish"
-        ]
-      },
-      "date": "9/27/2025"
-    },
-    {
-      "id": "0cc7",
-      "recipe": {
-        "id": 45,
-        "name": "Italian Margherita Pizza",
-        "ingredients": [
-          "Pizza dough",
-          "Tomatoes, thinly sliced",
-          "Fresh mozzarella, sliced",
-          "Fresh basil leaves",
-          "Olive oil",
-          "Garlic, minced",
-          "Salt and pepper to taste"
-        ],
-        "instructions": [
-          "Preheat the oven to the highest temperature your oven can go.",
-          "Roll out pizza dough on a floured surface and transfer to a pizza stone or baking sheet.",
-          "Brush the dough with olive oil and sprinkle minced garlic over the surface.",
-          "Arrange thinly sliced tomatoes and fresh mozzarella slices on the dough.",
-          "Bake until the crust is golden and the cheese is melted and bubbly.",
-          "Top with fresh basil leaves and season with salt and pepper. Slice and serve this classic Margherita Pizza."
-        ],
-        "prepTimeMinutes": 20,
-        "cookTimeMinutes": 12,
-        "servings": 4,
+        "servings": 6,
         "difficulty": "Easy",
         "cuisine": "Italian",
-        "caloriesPerServing": 280,
+        "caloriesPerServing": 120,
         "tags": [
-          "Margherita pizza",
-          "Italian",
-          "Quick"
+          "Bruschetta",
+          "Italian"
         ],
-        "userId": 160,
-        "image": "https://cdn.dummyjson.com/recipe-images/45.webp",
+        "userId": 137,
+        "image": "https://cdn.dummyjson.com/recipe-images/7.webp",
         "rating": 4.7,
-        "reviewCount": 98,
+        "reviewCount": 95,
         "mealType": [
-          "Dinner"
-        ]
+          "Appetizer"
+        ],
+        "favourite": true
       },
-      "date": "9/28/2025"
-    },
-    {
-      "id": "ae6d",
-      "recipe": {
-        "id": 29,
-        "name": "Lebanese Falafel Wrap",
-        "ingredients": [
-          "Falafel balls",
-          "Whole wheat or regular wraps",
-          "Tomatoes, diced",
-          "Cucumbers, sliced",
-          "Red onions, thinly sliced",
-          "Lettuce, shredded",
-          "Tahini sauce",
-          "Fresh parsley, chopped"
-        ],
-        "instructions": [
-          "Warm falafel balls according to package instructions.",
-          "Place a generous serving of falafel in the center of each wrap.",
-          "Top with diced tomatoes, sliced cucumbers, red onions, shredded lettuce, and fresh parsley.",
-          "Drizzle with tahini sauce and wrap tightly.",
-          "Enjoy this Lebanese Falafel Wrap filled with fresh and flavorful ingredients!"
-        ],
-        "prepTimeMinutes": 15,
-        "cookTimeMinutes": 10,
-        "servings": 2,
-        "difficulty": "Easy",
-        "cuisine": "Lebanese",
-        "caloriesPerServing": 400,
-        "tags": [
-          "Falafel",
-          "Lebanese",
-          "Wrap"
-        ],
-        "userId": 110,
-        "image": "https://cdn.dummyjson.com/recipe-images/29.webp",
-        "rating": 4.7,
-        "reviewCount": 84,
-        "mealType": [
-          "Lunch"
-        ]
-      },
-      "date": "9/29/2025"
+      "date": "10/1/2025"
     }
-  ]
+  ],
+  "favourites": []
 }

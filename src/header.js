@@ -12,11 +12,18 @@ const Header = () => {
       const res = await fetch(`https://dummyjson.com/recipes/search?q=${searchQuery}`);
       const data = await res.json();
       console.log(data);
-      setRecipes(data.recipes);
+      const response = await fetch("http://localhost:8000/favourites");
+      const favsData = await response.json();
+      const mapped = data.recipes.map(r => ({
+      ...r,
+      favourite: (favsData.includes(r.id) ? true : false) 
+    }));
+      setRecipes(mapped);
+      console.log(recipes); // delete then
       
       navigate(`/recipeResults`, {
         state: {  // ✅ Add 'state:' property
-          recipes: data.recipes // ✅ Use the fetched data directly
+          recipes: recipes // ✅ Use the fetched data directly
         }
       });
     } catch (error) {

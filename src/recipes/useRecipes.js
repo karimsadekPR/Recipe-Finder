@@ -6,11 +6,15 @@ const useRecipes = () => {
     const res = await fetch("http://localhost:8000/searchedBefore");
     const data = await res.json();
     
-    const mapped = data.map(item => item.recipe);
+    // I want to check from the database first, if the id is included then immedietly the 
+    // favourite will be true else false
+    const mapped = data.map(r => ({
+      ...r.recipe,
+    }));
     setRecipes(mapped);
   }
 
-    return { recipes,setRecipes,getRecipes} ;
+    return { recipes,setRecipes,getRecipes};
 }
  
 export default useRecipes;
