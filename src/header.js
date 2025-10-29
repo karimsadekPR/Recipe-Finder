@@ -1,29 +1,27 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useRecipes from "./recipes/useRecipes"
+import useRecipes from "./recipes/useRecipes";
 
 const Header = () => {
   const [query, setQuery] = useState("");   // input text
-  const{recipes, setRecipes} = useRecipes(); // search results
+  const {setRecipes} = useRecipes();
   const navigate = useNavigate()
 
   async function searchForRecipe(searchQuery) {
     try {
+      const term = query.trim();
+      if (!term) return;
+
       const res = await fetch(`https://dummyjson.com/recipes/search?q=${searchQuery}`);
       const data = await res.json();
-      console.log(data);
-      const response = await fetch("http://localhost:8000/favourites");
-      const favsData = await response.json();
       const mapped = data.recipes.map(r => ({
       ...r,
-      favourite: (favsData.includes(r.id) ? true : false) 
     }));
       setRecipes(mapped);
-      console.log(recipes); // delete then
-      
+      console.log(mapped);
       navigate(`/recipeResults`, {
         state: {  // ✅ Add 'state:' property
-          recipes: recipes // ✅ Use the fetched data directly
+          recipes: mapped // ✅ Use the fetched data directly
         }
       });
     } catch (error) {
@@ -42,6 +40,7 @@ const Header = () => {
    <div className="headerCom">
     <form onSubmit={handleSubmit} className="search-form">
         <input
+        required
         type="text"
         value={query}
         placeholder="search for your plate of today..."

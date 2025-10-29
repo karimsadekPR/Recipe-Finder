@@ -4,6 +4,7 @@ import Home from "./home";
 import RecipeResults from "./recipes/recipeResults"
 import RecipeDetails from "./recipeDetails/recipeDetails";
 import Cuisines from "./cuisines";
+import Favourites from "./favourites";
 function App() {
   return (
     <Router>
@@ -23,8 +24,7 @@ function App() {
         <Route path="/recipeResults" element={<RecipeResults />} />
         <Route path="/recipeDetails/:id" element={<RecipeDetails />} />
         <Route path="/cuisines" element={<Cuisines />} />
-        {/* <Route path="/favourites" element={<Favourites />} /> */}
-        {/* <Route path="/cuisines" element={<Cuisines />} /> */}
+        <Route path="/favourites" element={<Favourites />} />
       </Routes>
     </Router>
   );

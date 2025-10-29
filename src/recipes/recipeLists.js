@@ -1,10 +1,13 @@
-import { stringify } from "postcss";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useRecipes from "./useRecipes";
 
 const RecipeList = ({recipes}) => {
   const navigate = useNavigate();
-  const [favourites, setFavourites] = useState([]);
+  const [sortBy, setSortBy] = useState("name");
+  const [order, setOrder] = useState("asc");
+  const [sortedRecipes,setSortedRecipes] = useState([]);
+  const {favourites,setFavourites,fetchFavouritesID,getRecipes,fetchFavRecipes,setRecipes} = useRecipes();
 
   async function searchHistory(newRecipe) {
     try {
@@ -32,63 +35,81 @@ const RecipeList = ({recipes}) => {
   }
 
    useEffect(() => {
-    async function fetchFavourites() {
-      try {
-        const res = await fetch("http://localhost:8000/favourites");
-        const data = await res.json();
-        // store just recipe ids
-        setFavourites(data.map(fav => fav.recipeId));
-      } catch (error) {
-        console.error("Error fetching favourites:", error);
-      }
-    }
-
-    fetchFavourites();
+    fetchFavouritesID();
   }, []);
+  
+  useEffect(() => {
+    if (sortedRecipes) setRecipes(sortedRecipes);
+  }, [sortedRecipes]);
 
-  // ✅ Add to favourites
-  async function addToFavourites(recipeId) {
+  async function addToFavourites(recipeId,newRecipe) {
     try {
-      // check if already exists
       if (favourites.includes(recipeId)) return;
 
-      const newFav = { recipeId };
       await fetch("http://localhost:8000/favourites", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newFav),
+        body: JSON.stringify({ recipeId }),
       });
 
       setFavourites(prev => [...prev, recipeId]);
+      
+      const recipes = await getRecipes();
+      const favsExist = recipes.map(r => r.recipe.id); 
+      if(!favsExist.includes(recipeId)){
+      await fetch("http://localhost:8000/favRecipes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            recipe: newRecipe,
+            date: new Date().toLocaleDateString(),
+          }),
+      })
+    }
     } catch (error) {
       console.error("Error adding favourite:", error);
     }
   }
 
-  // ✅ Remove from favourites
   async function removeFavourite(recipeId) {
-    try {
-      // find the object with that recipeId
-      const res = await fetch(`http://localhost:8000/favourites?recipeId=${recipeId}`);
-      const data = await res.json();
-
-      if (data.length > 0) {
-        const favToDelete = data[0];
-        await fetch(`http://localhost:8000/favourites/${favToDelete.id}`, {
-          method: "DELETE",
-        });
-        setFavourites(prev => prev.filter(id => id !== recipeId));
-      }
-    } catch (error) {
-      console.error("Error removing favourite:", error);
+  try {
+    const favouritesRes = await fetch(`http://localhost:8000/favourites?recipeId=${recipeId}`);//needs to be replaced with the function from useRecipes
+    if (!favouritesRes.ok) throw new Error(`Failed to fetch favourites: ${favouritesRes.status}`);
+    
+    const favouritesData = await favouritesRes.json();
+    if (favouritesData.length === 0) {
+      console.warn(`No favourite found for recipeId: ${recipeId}`);
+      return;
     }
-  }
 
-  async function toggleFavourite(recipeId) {
+    const favToDelete = favouritesData[0];
+    const deleteFavRes = await fetch(`http://localhost:8000/favourites/${favToDelete.id}`, {
+      method: "DELETE",
+    });
+
+    if (!deleteFavRes.ok) throw new Error(`Failed to delete favourite: ${deleteFavRes.status}`);
+
+    setFavourites(prev => prev.filter(id => id !== recipeId));
+
+    const favRecipes = await fetchFavRecipes();
+      
+      const favRecipeToDelete = favRecipes.find(r => r.recipe.id === recipeId );
+
+      if (favRecipeToDelete) {
+        await fetch(`http://localhost:8000/favRecipes/${favRecipeToDelete.id}`, {
+          method: "DELETE",
+        });         
+      }
+
+    } catch (error) {
+    console.error("Error removing favourite:", error);
+  }
+}
+  async function toggleFavourite(recipeId,newRecipe) {
     if (favourites.includes(recipeId)) {
-      await removeFavourite(recipeId);
+      await removeFavourite(recipeId,newRecipe);
     } else {
-      await addToFavourites(recipeId);
+      await addToFavourites(recipeId,newRecipe);
     }
   }
 
@@ -101,6 +122,25 @@ const RecipeList = ({recipes}) => {
     }); // then navigate manually
   }
 
+  function handleSort(e) {
+    e.preventDefault();
+    
+    const sorted = [...recipes].sort((a, b) => { //should be optimized if possible
+      const valueA = a[sortBy];
+      const valueB = b[sortBy];
+
+      if (typeof valueA === "string") {
+        return order === "asc"
+          ? valueA.localeCompare(valueB)
+          : valueB.localeCompare(valueA);
+      }
+
+      return order === "asc" ? valueA - valueB : valueB - valueA;
+    });
+    setSortedRecipes(sorted);
+    console.log("bom")
+  }
+
   return (  
         <>
         <div className="recipe-results">
@@ -108,7 +148,37 @@ const RecipeList = ({recipes}) => {
           <h1 style={{textAlign:"center",fontSize:"100px",fontFamily:"MyFont"}}>Results:</h1>
           <p>Found {recipes?.length || 0} amazing recipes</p>
         </div>
-        
+        <div className="ResultsServicesBar">
+          <form onSubmit={handleSort}>
+            <select onChange={(e) => setSortBy(e.target.value)}>
+            <option value="name">Name</option>
+            <option value="rating">Rating</option>
+            <option value="difficulty">Difficulty</option>
+            </select>
+          
+          <label>
+          <input
+            type="radio"
+            value="asc"
+            checked={order === "asc"}
+            onChange={(e) => setOrder(e.target.value)}
+          />
+          Ascending
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            value="desc"
+            checked={order === "desc"}
+            onChange={(e) => setOrder(e.target.value)}
+          />
+          Descending
+        </label>
+
+          <button type="submit">Apply</button>          
+          </form>
+          </div> 
         <div className="recipeList">
           {recipes?.map((recipe, index) => (
             <div 
@@ -119,13 +189,13 @@ const RecipeList = ({recipes}) => {
               }} 
               className="recipePer"
             >
-              <button
+              <button className="heart"
               onClick={async (e) => {
                   e.stopPropagation();
-                  toggleFavourite(recipe.id);
+                  toggleFavourite(recipe.id,recipe);
               }}
             > 
-              <img
+              <img 
                 src={favourites.includes(recipe.id) ? "./images/fullHeart.png" : "./images/heartEmpty.png"}
                 alt="favourite"
               />
@@ -146,13 +216,9 @@ const RecipeList = ({recipes}) => {
       </div>
     </>
     );
-} //a glowy heart button should be added and also I should 
+} 
+//a glowy heart button should be added and also I should 
 // add that glowy effect with keyframes from css
  
 export default RecipeList;
 
-//image
-//name
-//Cuisine
-//rating
-//
