@@ -229,20 +229,59 @@
         "favourite": false
       },
       "date": "10/24/2025"
+    },
+    {
+      "id": "06bc",
+      "recipe": {
+        "id": 6,
+        "name": "Quinoa Salad with Avocado",
+        "ingredients": [
+          "Quinoa, cooked",
+          "Avocado, diced",
+          "Cherry tomatoes, halved",
+          "Cucumber, diced",
+          "Red bell pepper, diced",
+          "Feta cheese, crumbled",
+          "Lemon vinaigrette dressing",
+          "Salt and pepper to taste"
+        ],
+        "instructions": [
+          "In a large bowl, combine cooked quinoa, diced avocado, halved cherry tomatoes, diced cucumber, diced red bell pepper, and crumbled feta cheese.",
+          "Drizzle with lemon vinaigrette dressing and toss to combine.",
+          "Season with salt and pepper to taste.",
+          "Chill in the refrigerator before serving."
+        ],
+        "prepTimeMinutes": 20,
+        "cookTimeMinutes": 15,
+        "servings": 4,
+        "difficulty": "Easy",
+        "cuisine": "Mediterranean",
+        "caloriesPerServing": 280,
+        "tags": [
+          "Salad",
+          "Quinoa"
+        ],
+        "userId": 197,
+        "image": "https://cdn.dummyjson.com/recipe-images/6.webp",
+        "rating": 4.4,
+        "reviewCount": 59,
+        "mealType": [
+          "Lunch",
+          "Side Dish"
+        ],
+        "favourite": false
+      },
+      "date": "10/31/2025"
     }
   ],
   "favourites": [
     {
-      "id": "fa4a",
-      "recipeId": 3
-    },
-    {
-      "id": "0ffc",
-      "recipeId": 4
-    },
-    {
       "id": "dce2",
       "recipeId": 6
+    },
+    {
+      "id": "f060",
+      "recipeId": 3
     }
   ],
   "favRecipes": [

@@ -333,7 +333,6 @@ button:hover {
   padding: 4rem 2rem 2rem;
   background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
   color: white;
-  margin-bottom: 2rem;
 }
 
 .page-header h1 {
@@ -342,7 +341,7 @@ button:hover {
   margin-bottom: 1rem;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+/* ===== RESPONSIVE DESIGN =====                       let's look into that again*/ 
 @media (max-width: 768px) {
   .header-content {
     flex-direction: column;
@@ -397,3 +396,211 @@ button:hover {
   height: inherit;
   width: 50px;
 }
+
+.ResultsServicesBar {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated background gradient  //       Really cool!, but not needed here*/   
+/* .ResultsServicesBar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s;
+} */
+
+.ResultsServicesBar:hover::before {
+  left: 100%;
+} 
+
+.ResultsServicesBar select {
+  font-size: 1rem;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+}
+
+.ResultsServicesBar select:hover {
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ResultsServicesBar select:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(255, 255, 255, 0.3),
+    0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.ResultsServicesBar form {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ResultsServicesBar label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.ResultsServicesBar label:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Custom radio buttons */
+.ResultsServicesBar input[type="radio"] {
+  cursor: pointer;
+  scale: 1.4;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: transparent;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.ResultsServicesBar input[type="radio"]:checked {
+  border-color: #fff;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.ResultsServicesBar input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: var(--primary-color);
+  border-radius: 50%;
+}
+
+/* Add some micro-interactions */
+.ResultsServicesBar select option {
+  color: white;
+  background: #2d3748;
+}
+
+/* Responsive glow effect */
+@media (min-width: 768px) {
+  .ResultsServicesBar {
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      0 0 80px rgba(var(--primary-color-rgb), 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Loading animation for form submission */
+.ResultsServicesBar.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.ResultsServicesBar.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  animation: loading 1.5s infinite;
+}
+
+.bestRecipes {
+  margin-top: 10px;  
+  border-radius: 20px;
+  overflow: show;
+}
+
+.bestRated {
+  display: flex;
+  gap: 20px;
+}
+
+.bestRating {
+  min-width: 200px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.bestRating img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 20px;
+  filter: brightness(0.9);
+  transition: transform 0.3s ease-in-out;
+}
+
+.bestRating:hover img {
+  transform: scale(1.05);
+}
+
+.bestRating h2 {
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  color: white;
+  font-size: 18px;
+  text-shadow: 0 2px 6px black;
+}
+
+.bestRating .rating {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: #c53030;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+@keyframes loading {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+

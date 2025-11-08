@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useRecipes from "./useRecipes";
+import { motion } from "framer-motion";
 
 const RecipeList = ({recipes}) => {
   const navigate = useNavigate();
   const [sortBy, setSortBy] = useState("name");
   const [order, setOrder] = useState("asc");
-  const [sortedRecipes,setSortedRecipes] = useState([]);
+  const [localRecipes,setLocalRecipes] = useState([]);
   const {favourites,setFavourites,fetchFavouritesID,getRecipes,fetchFavRecipes,setRecipes} = useRecipes();
 
   async function searchHistory(newRecipe) {
@@ -38,9 +39,7 @@ const RecipeList = ({recipes}) => {
     fetchFavouritesID();
   }, []);
   
-  useEffect(() => {
-    if (sortedRecipes) setRecipes(sortedRecipes);
-  }, [sortedRecipes]);
+  
 
   async function addToFavourites(recipeId,newRecipe) {
     try {
@@ -122,6 +121,10 @@ const RecipeList = ({recipes}) => {
     }); // then navigate manually
   }
 
+    useEffect(() => {
+    setLocalRecipes(recipes);
+  }, [recipes]);
+
   function handleSort(e) {
     e.preventDefault();
     
@@ -137,8 +140,8 @@ const RecipeList = ({recipes}) => {
 
       return order === "asc" ? valueA - valueB : valueB - valueA;
     });
-    setSortedRecipes(sorted);
-    console.log("bom")
+    setLocalRecipes(sorted);
+    console.log(sorted)
   }
 
   return (  
@@ -179,8 +182,17 @@ const RecipeList = ({recipes}) => {
           <button type="submit">Apply</button>          
           </form>
           </div> 
-        <div className="recipeList">
-          {recipes?.map((recipe, index) => (
+           <div className="recipeList">
+          {localRecipes?.map((recipe, index) => (
+          <>
+          <motion.div 
+                                                  // needs to be inspected again
+          key={recipe.id}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: index * 0.05 }}
+          >
+
             <div 
               key={index} 
               onClick={async (e) => {
@@ -211,6 +223,8 @@ const RecipeList = ({recipes}) => {
                 </div>
               </div>
             </div>
+          </motion.div>
+          </>  
           ))}
         </div>
       </div>
